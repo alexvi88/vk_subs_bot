@@ -5,7 +5,7 @@ import os
 
 
 def add_group_to_user(user_id, group_id):
-    engine = create_engine("sqlite:////home/alexander888/mysite/users/" + user_id + ".db")
+    engine = create_engine("sqlite:///" + settings.directory_with_users + user_id + ".db")
 
     Base.metadata.create_all(engine)
 
@@ -22,7 +22,7 @@ def add_group_to_user(user_id, group_id):
 
 
 def remove_group_from_user(user_id, del_group_id):
-    engine = create_engine("sqlite:////home/alexander888/mysite/users/" + user_id + ".db")
+    engine = create_engine("sqlite:///" + settings.directory_with_users + user_id + ".db")
 
     Base.metadata.create_all(engine)
 
@@ -47,7 +47,7 @@ def get_user_groups(user_id):
     if not have_subs(user_id):
         return 'Empty'
 
-    engine = create_engine("sqlite:////home/alexander888/mysite/users/" + user_id + ".db")
+    engine = create_engine("sqlite:///" + settings.directory_with_users + user_id + ".db")
 
     Base.metadata.create_all(engine)
 
@@ -65,13 +65,13 @@ def get_user_groups(user_id):
 
 
 def delete_user(user_id):
-    path = "/home/alexander888/mysite/users/" + user_id + ".db"
+    path = settings.directory_with_users + user_id + ".db"
     if have_subs(user_id):
         os.remove(path=path)
 
 
 def get_group_last_date(user_id, group_id):
-    engine = create_engine("sqlite:////home/alexander888/mysite/users/" + user_id + ".db")
+    engine = create_engine("sqlite:///" + settings.directory_with_users + user_id + ".db")
 
     Base.metadata.create_all(engine)
 
@@ -87,7 +87,7 @@ def get_group_last_date(user_id, group_id):
 
 
 def update_group_last_date(user_id, group_id, new_time):
-    engine = create_engine("sqlite:////home/alexander888/mysite/users/" + user_id + ".db")
+    engine = create_engine("sqlite:///" + settings.directory_with_users + user_id + ".db")
 
     Base.metadata.create_all(engine)
 
@@ -102,7 +102,7 @@ def update_group_last_date(user_id, group_id, new_time):
 
 
 def have_subs(user_id):
-    path = "/home/alexander888/mysite/users/" + user_id + ".db"
+    path = settings.directory_with_users + user_id + ".db"
     if os.path.exists(path):
         return True
 
