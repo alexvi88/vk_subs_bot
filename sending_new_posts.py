@@ -2,6 +2,7 @@ import os
 import methods_for_db
 import vk_messages
 import groups_tools
+import settings
 
 def send_new_posts_to_all_users():
     all_users_ids = get_all_users_ids()
@@ -19,7 +20,7 @@ def send_new_posts_to_all_users():
 
 
 def get_all_users_ids():
-    my_directory = '/home/alexander888/mysite/users'
+    my_directory = settings.directory_with_users
     files = os.listdir(my_directory)
     ans = []
     for file in files:
