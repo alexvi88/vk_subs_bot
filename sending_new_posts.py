@@ -15,8 +15,9 @@ def send_new_posts_to_all_users():
             posts_for_this_user.extend(groups_tools.get_posts(user_id, cur_group_id))
 
         for post in posts_for_this_user:
-            post_info = "wall" + str(post['from_id']) + "_" + str(post['id'])
-            vk_messages.send_post_to_user(user_id, post_info)
+            if post['marked_as_ads'] == 0:
+                post_info = "wall" + str(post['from_id']) + "_" + str(post['id'])
+                vk_messages.send_post_to_user(user_id, post_info)
 
 
 def get_all_users_ids():
