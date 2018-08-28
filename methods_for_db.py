@@ -33,13 +33,10 @@ def remove_group_from_user(user_id, del_group_id):
         group_to_del = cur_session.query(user_groups).filter_by(group_id=del_group_id).first()
         cur_session.delete(group_to_del)
 
-    need_deleting = False
-    need_deleting = (cur_session.query(user_groups).first() is  None)
-
     cur_session.commit()
     cur_session.close()
 
-    if need_deleting:
+    if cur_session.query(user_groups).first() is  None:
         delete_user(user_id)
 
 
